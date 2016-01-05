@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Stats</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+<div style="padding:1em;">
+   <h2>Stats</h2>
+
+    <div class="row">
+        <div class="col-md-2"><h5>Total requests:</h5></div>
+        <div class="col-md-2"><h5>{{totalRequests}}</h5></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"><h5>Unique requests:</h5></div>
+        <div class="col-md-2"><h5>{{uniqueRequests}}</h5></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"><h5>Open connections:</h5></div>
+        <div class="col-md-2"><h5>{{openConnections}}</h5></div>
+    </div>
+
+    <table class="table">
+       <h3>Requests per IP:</h3>
+        <thead>
+        <th>IP</th>
+        <th># Requests</th>
+        <th>Last Request Time</th>
+        </tr> </thead>
+        <tbody>
+        {{#requests}}
+            <tr>
+                <td>{{ip}}</td>
+                <td>{{nRequests}}</td>
+                <td>{{requestStartTime}}</td>
+            </tr>
+        {{/requests}}
+
+        </tbody>
+    </table>
+
+    <table class="table">
+        <h3>Redirects:</h3>
+        <thead>
+        <th>URL</th>
+        <th># Redirects</th>
+        </tr> </thead>
+        <tbody>
+        {{#redirects}}
+            <tr>
+                <td>{{getFirst}}</td>
+                <td>{{getLast}}</td>
+            </tr>
+        {{/redirects}}
+        </tbody>
+    </table>
+
+    <table class="table">
+        <h3>16 Last processed connections</h3>
+        <thead>
+        <th>src_ip</th>
+        <th>URI</th>
+        <th>timestamp</th>
+        <th>sent_bytes</th>
+        <th>received_bytes</th>
+        <th>Speed (bytes/sec)</th>
+        </tr> </thead>
+        <tbody>
+        {{#connections}}
+            <tr>
+                <td>{{ip}}</td>
+                <td>{{uri}}</td>
+                <td>{{startTime}}</td>
+                <td>{{bytesSent}}</td>
+                <td>{{bytesReceived}}</td>
+                <td>{{speed}}</td>
+            </tr>
+        {{/connections}}
+
+        </tbody>
+    </table>
+
+
+</div>
+
+
+</body>
+</html>

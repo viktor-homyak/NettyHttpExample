@@ -1,0 +1,17 @@
+IMPLEMENTATION DETAILS
+
+For route HTTP requests to handlers was used Netty-Router combining with
+implemented processRequest method of HttpHandler interface in each handler.
+
+To delay response on /hello route different group of executors was used.
+Delaying is performed via 'schedule' method of ChannelContext's executor.
+
+Redirect is just HTTP Found response with custom LOCATION header.
+
+Statistics was done using  PerChannelStatisticHandler object,
+which delegate data from each request to StatServise, where situated
+and are filled with needed collections.
+PerChannelStatisticHandler also extends ChannelTrafficShapingHandler,
+ which give good functionality for measuring channel traffic.
+
+View was done with help of Mustache web template system.
